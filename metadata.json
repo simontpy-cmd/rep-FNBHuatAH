@@ -1,0 +1,6 @@
+{
+  "name": "FNB Huat Ah",
+  "description": "AI-Powered Food & Beverage Location Intelligence & Business Advisor for Singapore commercial listings, market demand analysis, and menu pricing simulator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
