@@ -52,6 +52,17 @@ export interface CommercialListing {
     rentAffordability: number;
     growthPotential: number;
   };
+  upcomingDevelopments?: {
+    masterPlanVision: string;
+    catalysts: string[];
+    uraPlanningDecisions: {
+      decisionNo: string;
+      decisionDate: string;
+      decisionType: string;
+      description: string;
+      fnbImpact: string;
+    }[];
+  };
   features: {
     exhaustFitted: boolean;
     greaseTrap: boolean;

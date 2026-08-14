@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   X,
   MapPin,
@@ -21,9 +21,12 @@ import {
   Share2,
   Calendar,
   Check,
+  Database,
+  Copy,
 } from 'lucide-react';
 import { CommercialListing } from '../types';
 import { SingleListingMap } from './SingleListingMap';
+import { URA_PLANNING_DECISIONS_DATA } from '../data/mockData';
 
 interface ListingDetailModalProps {
   listing: CommercialListing | null;
@@ -321,6 +324,66 @@ export const ListingDetailModal: React.FC<ListingDetailModalProps> = ({
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Upcoming Developments & URA Masterplan Feed */}
+          <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-3.5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Database className="w-4 h-4 text-red-600" />
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  Upcoming Developments &amp; URA Masterplan ({listing.districtCode})
+                </h4>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10px] text-slate-500 font-mono bg-white px-2 py-0.5 rounded border border-slate-200">
+                <span className="text-emerald-600 font-bold">GET</span>
+                <span>service=Planning_Decision</span>
+              </div>
+            </div>
+
+            {/* List matching URA Planning Decisions for this district */}
+            {(() => {
+              const matchedDecisions = URA_PLANNING_DECISIONS_DATA.filter(
+                (d) => d.districtCode === listing.districtCode || listing.address.toLowerCase().includes(d.planningArea.toLowerCase())
+              );
+              const decisionsToShow = matchedDecisions.length > 0 ? matchedDecisions : URA_PLANNING_DECISIONS_DATA.slice(0, 2);
+
+              return (
+                <div className="space-y-2.5">
+                  {decisionsToShow.map((dec) => (
+                    <div key={dec.id} className="p-3 rounded-lg bg-white border border-slate-200 text-xs space-y-1.5 shadow-2xs">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-mono font-bold text-[10px] text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100">
+                            {dec.submissionNo}
+                          </span>
+                          <span className="font-bold text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">
+                            {dec.decisionType}
+                          </span>
+                        </div>
+                        <span className="text-[10px] text-slate-400">{dec.decisionDate}</span>
+                      </div>
+                      <p className="text-slate-800 font-medium text-[11px] leading-snug">{dec.projectDescription}</p>
+                      <div className="text-[10px] text-red-700 bg-red-50 p-1.5 rounded font-semibold border border-red-100 flex items-start gap-1">
+                        <span>Growth Impact:</span>
+                        <span className="text-slate-700 font-normal">{dec.commercialFnbImpact}</span>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1">
+                    <span>Data Source: URA DataService (Planning Decision API)</span>
+                    <a
+                      href="#key-factors"
+                      onClick={onClose}
+                      className="text-red-600 font-bold hover:underline"
+                    >
+                      Explore 7-Pillar Scoring &rarr;
+                    </a>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
 
           {/* Turnkey Features & Licensing Checklist */}

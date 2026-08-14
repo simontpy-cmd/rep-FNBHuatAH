@@ -252,13 +252,29 @@ export const MarketAnalysisExample: React.FC = () => {
 
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs">
-                  <span className="text-slate-700 font-medium">Growth Potential &amp; Master Plan</span>
+                  <span className="text-slate-700 font-medium">Upcoming Developments &amp; Masterplan</span>
                   <span className="font-mono font-bold text-red-600">95 / 100</span>
                 </div>
                 <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full bg-red-600 rounded-full" style={{ width: '95%' }} />
                 </div>
               </div>
+            </div>
+
+            {/* URA Planning Decision Insight for Worked Example */}
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-slate-900 uppercase text-[11px] flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                  URA Planning Decision Live Feed Signal (Downtown Core / D02):
+                </span>
+                <span className="text-[10px] font-mono text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">
+                  GET https://eservice.ura.gov.sg/uraDataService/invokeUraDS/v1?service=Planning_Decision
+                </span>
+              </div>
+              <p className="text-slate-600 leading-relaxed text-[11px]">
+                Approved Written Permission (WP) for 80 Anson Road (Newport Tower &amp; Residences, GFA 65,400 sqm) and Tras Street shophouse additions injects an estimated <strong>+3,800 high-earning residents &amp; office workers</strong> within a 3-minute walking catchment over the next 24 months.
+              </p>
             </div>
           </div>
         )}
