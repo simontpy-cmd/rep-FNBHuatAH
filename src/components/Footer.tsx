@@ -44,11 +44,6 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="hover:text-red-400 transition-colors">
-                  Leasing Methodology
-                </a>
-              </li>
-              <li>
                 <a href="#key-factors" className="hover:text-red-400 transition-colors">
                   7-Pillar Attractiveness Score
                 </a>
@@ -68,8 +63,8 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#worked-example" className="hover:text-red-400 transition-colors">
-                  Tanjong Pagar Case Study
+                <a href="#key-factors" className="hover:text-red-400 transition-colors">
+                  7-Pillar Scoring &amp; URA Feed
                 </a>
               </li>
               <li>

@@ -29,7 +29,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white overflow-hidden">
+    <section className="relative pt-12 pb-14 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white overflow-hidden">
       {/* Background Graphic Grid */}
       <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#e02424_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
       <div className="absolute -top-24 right-0 w-96 h-96 bg-red-600/10 blur-[130px] rounded-full pointer-events-none" />
@@ -200,41 +200,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </a>
             </div>
           </form>
-        </div>
-
-        {/* Commercial Market Snapshot Banner */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl mx-auto mt-8">
-          <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 backdrop-blur-sm">
-            <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5 mb-0.5">
-              <Building className="w-3.5 h-3.5 text-red-400" /> Verified Commercial Listings
-            </span>
-            <p className="text-xl font-extrabold text-white">8 Prime Units</p>
-            <p className="text-[11px] text-emerald-400 font-medium">100% URA F&amp;B Approved</p>
-          </div>
-
-          <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 backdrop-blur-sm">
-            <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5 mb-0.5">
-              <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> Median F&amp;B Rent
-            </span>
-            <p className="text-xl font-extrabold text-white">S$ 14.19 psf</p>
-            <p className="text-[11px] text-slate-400">Monthly S$7.2k - S$18.5k</p>
-          </div>
-
-          <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 backdrop-blur-sm">
-            <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5 mb-0.5">
-              <MapPin className="w-3.5 h-3.5 text-amber-400" /> Avg MRT Transit Walk
-            </span>
-            <p className="text-xl font-extrabold text-white">2.2 Minutes</p>
-            <p className="text-[11px] text-amber-400 font-medium">Direct interchange access</p>
-          </div>
-
-          <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 backdrop-blur-sm">
-            <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5 mb-0.5">
-              <Compass className="w-3.5 h-3.5 text-blue-400" /> AI Business Feasibility
-            </span>
-            <p className="text-xl font-extrabold text-white">Gemini 2.5</p>
-            <p className="text-[11px] text-blue-400 font-medium">Instant lease risk verdict</p>
-          </div>
         </div>
       </div>
     </section>

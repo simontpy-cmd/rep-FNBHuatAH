@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { VisionSection } from './components/VisionSection';
-import { HowItWorksSection } from './components/HowItWorksSection';
 import { KeyFactorsSection } from './components/KeyFactorsSection';
 import { UserSegmentsSection } from './components/UserSegmentsSection';
 import { BusinessAdvisorAI } from './components/BusinessAdvisorAI';
-import { MarketAnalysisExample } from './components/MarketAnalysisExample';
 import { ListingsExplorer } from './components/ListingsExplorer';
 import { ListingDetailModal } from './components/ListingDetailModal';
 import { CompareModal } from './components/CompareModal';
@@ -67,12 +64,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-red-600 selection:text-white">
-      {/* Top Fixed Header Navbar */}
-      <Navbar
-        shortlistCount={shortlist.length}
-        onOpenCompare={() => setIsCompareOpen(true)}
-      />
-
       {/* Main Content Sections */}
       <main>
         {/* Hero Section */}
@@ -97,10 +88,7 @@ export default function App() {
         {/* Frame 01: Vision - What and Why */}
         <VisionSection />
 
-        {/* Frame 02: How It Works (4 Steps) */}
-        <HowItWorksSection />
-
-        {/* Frame 03: Key Factors (7 Pillars) */}
+        {/* Frame 02: Key Factors (7 Pillars) */}
         <KeyFactorsSection />
 
         {/* Frame 04: Who It Is For */}
@@ -111,9 +99,6 @@ export default function App() {
           userProfile={userProfile}
           selectedListing={advisorFocusListing}
         />
-
-        {/* Frame 06: Market Analysis Worked Example */}
-        <MarketAnalysisExample />
       </main>
 
       {/* Footer */}
