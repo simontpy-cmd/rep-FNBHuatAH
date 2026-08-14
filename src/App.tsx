@@ -5,8 +5,6 @@ import { VisionSection } from './components/VisionSection';
 import { HowItWorksSection } from './components/HowItWorksSection';
 import { KeyFactorsSection } from './components/KeyFactorsSection';
 import { UserSegmentsSection } from './components/UserSegmentsSection';
-import { LocationStudio } from './components/LocationStudio';
-import { FoodMenuPricingSection } from './components/FoodMenuPricingSection';
 import { BusinessAdvisorAI } from './components/BusinessAdvisorAI';
 import { MarketAnalysisExample } from './components/MarketAnalysisExample';
 import { ListingsExplorer } from './components/ListingsExplorer';
@@ -85,38 +83,7 @@ export default function App() {
           shortlistCount={shortlist.length}
         />
 
-        {/* Frame 01: Vision - What and Why */}
-        <VisionSection />
-
-        {/* Frame 02: How It Works (4 Steps) */}
-        <HowItWorksSection />
-
-        {/* Frame 03: Key Factors */}
-        <KeyFactorsSection />
-
-        {/* Frame 04: Who It Is For */}
-        <UserSegmentsSection />
-
-        {/* Interactive Location Studio: Define Business & Auto-Match */}
-        <LocationStudio
-          profile={userProfile}
-          onUpdateProfile={setUserProfile}
-          onSelectListingForDetail={(listing) => setActiveDetailListing(listing)}
-        />
-
-        {/* Frame 05: Food Menu, Pricing & Unit Economics Simulator */}
-        <FoodMenuPricingSection />
-
-        {/* Frame 06: Ask the AI Business Advisor */}
-        <BusinessAdvisorAI
-          userProfile={userProfile}
-          selectedListing={advisorFocusListing}
-        />
-
-        {/* Frame 07: Market Analysis Worked Example */}
-        <MarketAnalysisExample />
-
-        {/* Frame 08: Commercial Listings Explorer & Shortlist */}
+        {/* Unified Map Search & Commercial Units Explorer */}
         <ListingsExplorer
           selectedDistrict={selectedDistrict}
           onSelectDistrict={setSelectedDistrict}
@@ -126,6 +93,27 @@ export default function App() {
           onOpenCompare={() => setIsCompareOpen(true)}
           onAskAdvisor={handleAskAdvisorForListing}
         />
+
+        {/* Frame 01: Vision - What and Why */}
+        <VisionSection />
+
+        {/* Frame 02: How It Works (4 Steps) */}
+        <HowItWorksSection />
+
+        {/* Frame 03: Key Factors (7 Pillars) */}
+        <KeyFactorsSection />
+
+        {/* Frame 04: Who It Is For */}
+        <UserSegmentsSection />
+
+        {/* Frame 05: Ask the AI Business Advisor */}
+        <BusinessAdvisorAI
+          userProfile={userProfile}
+          selectedListing={advisorFocusListing}
+        />
+
+        {/* Frame 06: Market Analysis Worked Example */}
+        <MarketAnalysisExample />
       </main>
 
       {/* Footer */}

@@ -22,9 +22,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const listingsSection = document.getElementById('listings');
-    if (listingsSection) {
-      listingsSection.scrollIntoView({ behavior: 'smooth' });
+    const mapSearchSection = document.getElementById('map-search') || document.getElementById('listings');
+    if (mapSearchSection) {
+      mapSearchSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -193,7 +193,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 D22 Jurong Gateway Hub
               </button>
               <a
-                href="#map-view"
+                href="#map-search"
                 className="ml-auto text-red-600 hover:text-red-700 font-bold flex items-center gap-1"
               >
                 <MapPin className="w-3.5 h-3.5" /> Interactive Map View &rarr;

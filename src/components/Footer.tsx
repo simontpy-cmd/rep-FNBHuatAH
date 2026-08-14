@@ -34,12 +34,12 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#listings" className="hover:text-red-400 transition-colors">
-                  Commercial F&amp;B For Rent
+                <a href="#map-search" className="hover:text-red-400 transition-colors">
+                  Commercial F&amp;B Map Search
                 </a>
               </li>
               <li>
-                <a href="#listings" className="hover:text-red-400 transition-colors">
+                <a href="#map-search" className="hover:text-red-400 transition-colors">
                   Shophouses &amp; Mall Units
                 </a>
               </li>
@@ -63,11 +63,6 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#menu-pricing" className="hover:text-red-400 transition-colors">
-                  Menu &amp; COGS Margin Simulator
-                </a>
-              </li>
-              <li>
                 <a href="#advisor" className="hover:text-red-400 transition-colors">
                   Commercial Advisor AI
                 </a>
@@ -78,8 +73,13 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#studio" className="hover:text-red-400 transition-colors">
-                  Location Matching Studio
+                <a href="#who-its-for" className="hover:text-red-400 transition-colors">
+                  Target Audiences &amp; Operators
+                </a>
+              </li>
+              <li>
+                <a href="#vision" className="hover:text-red-400 transition-colors">
+                  Vision: What &amp; Why
                 </a>
               </li>
             </ul>

@@ -47,7 +47,7 @@ export const ListingsExplorer: React.FC<ListingsExplorerProps> = ({
   onOpenCompare,
   onAskAdvisor,
 }) => {
-  const [viewMode, setViewMode] = useState<'grid' | 'map' | 'split'>('grid');
+  const [viewMode, setViewMode] = useState<'split' | 'grid' | 'map'>('split');
   const [propertyTypeFilter, setPropertyTypeFilter] = useState<string>('ALL');
   const [maxRentBudget, setMaxRentBudget] = useState<number>(20000);
   const [sortBy, setSortBy] = useState<'score' | 'rentAsc' | 'rentDesc' | 'traffic' | 'area'>('score');
@@ -117,34 +117,29 @@ export const ListingsExplorer: React.FC<ListingsExplorerProps> = ({
   ];
 
   return (
-    <section id="listings" className="py-16 bg-slate-50 border-t border-slate-200">
+    <section id="map-search" className="py-16 bg-slate-50 border-t border-slate-200 scroll-mt-14">
+      {/* Anchor alias for backwards compatibility */}
+      <div id="listings" className="sr-only" />
+      <div id="map-view" className="sr-only" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with CommercialGuru Branding */}
+        {/* Section Header with Unified Map Search & Commercial Units */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-slate-200">
           <div>
             <div className="flex items-center gap-2 text-red-600 font-bold text-xs tracking-wider uppercase mb-1.5">
               <span className="w-2 h-2 rounded-full bg-red-600" />
-              <span>FNB Huat Ah • Verified Singapore Commercial Properties</span>
+              <span>FNB Huat Ah • Interactive Commercial Property Search</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Singapore Commercial F&amp;B Properties for Lease
+              Singapore Commercial F&amp;B Map Search &amp; Units Explorer
             </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
+              Browse verified commercial shophouses, mall units, and food kiosks on Google Maps with real-time footfall traffic, rental rates, and kitchen exhaust specifications.
+            </p>
           </div>
           <div className="flex items-center gap-2 mt-4 md:mt-0">
             {/* View Mode Toggle Switcher */}
             <div className="inline-flex p-1 rounded-xl bg-white border border-slate-200 shadow-2xs">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
-                  viewMode === 'grid'
-                    ? 'bg-red-600 text-white shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-                title="Grid View"
-              >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Grid</span>
-              </button>
               <button
                 onClick={() => setViewMode('split')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
@@ -155,10 +150,9 @@ export const ListingsExplorer: React.FC<ListingsExplorerProps> = ({
                 title="Split Map + List"
               >
                 <Columns className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Split Map</span>
+                <span>Split Map + Units</span>
               </button>
               <button
-                id="map-view"
                 onClick={() => setViewMode('map')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
                   viewMode === 'map'
@@ -168,7 +162,19 @@ export const ListingsExplorer: React.FC<ListingsExplorerProps> = ({
                 title="Full Google Map View"
               >
                 <MapIcon className="w-3.5 h-3.5" />
-                <span>Map Search</span>
+                <span>Full Map</span>
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+                  viewMode === 'grid'
+                    ? 'bg-red-600 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+                title="Grid View"
+              >
+                <LayoutGrid className="w-3.5 h-3.5" />
+                <span>Unit Cards Grid</span>
               </button>
             </div>
           </div>
@@ -395,7 +401,11 @@ export const ListingsExplorer: React.FC<ListingsExplorerProps> = ({
             </div>
 
             {/* Right side: Listings Cards Column */}
-            <div className="lg:col-span-5 space-y-4 max-h-[620px] overflow-y-auto pr-1">
+            <div className="lg:col-span-5 space-y-3.5 max-h-[620px] overflow-y-auto pr-1">
+              <div className="flex items-center justify-between pb-1 text-xs text-slate-500 font-medium">
+                <span>Showing {sortedListings.length} units on map</span>
+                <span className="text-[11px] text-slate-400">Click card to pan map</span>
+              </div>
               {sortedListings.map((listing) => {
                 const isShortlisted = shortlist.some((item) => item.id === listing.id);
                 const isSelected = selectedMapListing?.id === listing.id;
@@ -404,9 +414,9 @@ export const ListingsExplorer: React.FC<ListingsExplorerProps> = ({
                   <div
                     key={listing.id}
                     onClick={() => setSelectedMapListing(listing)}
-                    className={`p-4 rounded-xl bg-white border transition-all cursor-pointer shadow-2xs hover:shadow-md ${
+                    className={`p-3.5 rounded-xl bg-white border transition-all cursor-pointer shadow-2xs hover:shadow-md ${
                       isSelected
-                        ? 'border-red-600 ring-2 ring-red-100 bg-red-50/20'
+                        ? 'border-red-600 ring-2 ring-red-100 bg-red-50/20 shadow-sm'
                         : 'border-slate-200 hover:border-slate-300'
                     }`}
                   >
@@ -421,30 +431,63 @@ export const ListingsExplorer: React.FC<ListingsExplorerProps> = ({
                         <span className="absolute bottom-1 right-1 bg-black/70 text-white text-[9px] px-1 rounded font-mono">
                           {listing.floorAreaSqft} sqft
                         </span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onToggleShortlist(listing);
+                          }}
+                          className={`absolute top-1 right-1 w-6 h-6 rounded-full flex items-center justify-center transition ${
+                            isShortlisted
+                              ? 'bg-red-600 text-white'
+                              : 'bg-black/40 text-white hover:bg-black/70'
+                          }`}
+                          title={isShortlisted ? 'Remove from shortlist' : 'Add to shortlist'}
+                        >
+                          <Heart className="w-3.5 h-3.5 fill-current" />
+                        </button>
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
-                            {listing.districtCode}
-                          </span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
+                              {listing.districtCode}
+                            </span>
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                              {listing.attractivenessScore}/100
+                            </span>
+                          </div>
                           <span className="text-sm font-extrabold text-red-600">
                             S$ {listing.monthlyRent.toLocaleString()}
                             <span className="text-[10px] font-normal text-slate-500">/mo</span>
                           </span>
                         </div>
                         <h4 className="text-xs font-bold text-slate-900 truncate">{listing.name}</h4>
-                        <p className="text-[11px] text-slate-500 truncate mb-2">{listing.address}</p>
-                        <div className="flex items-center justify-between text-[11px]">
-                          <span className="text-slate-600">S$ {listing.rentPerSqft} psf</span>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onOpenDetailModal(listing);
-                            }}
-                            className="text-xs font-bold text-red-600 hover:underline"
-                          >
-                            View &rarr;
-                          </button>
+                        <p className="text-[11px] text-slate-500 truncate mb-1.5">{listing.address}</p>
+
+                        <div className="flex items-center justify-between text-[11px] pt-1 border-t border-slate-100">
+                          <span className="text-slate-600 font-medium">S$ {listing.rentPerSqft} psf • {listing.footTrafficHourlyAvg}/hr</span>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onAskAdvisor(listing);
+                              }}
+                              className="text-[11px] font-bold text-blue-600 hover:text-blue-800 flex items-center gap-0.5"
+                              title="Ask AI Advisor about this unit"
+                            >
+                              <Sparkles className="w-3 h-3" />
+                              <span>AI</span>
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onOpenDetailModal(listing);
+                              }}
+                              className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline"
+                            >
+                              Details &rarr;
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>

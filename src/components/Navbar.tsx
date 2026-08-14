@@ -4,13 +4,11 @@ import { Building2, MapPin, SlidersHorizontal, Scale, ChevronRight, Menu, X, Boo
 interface NavbarProps {
   shortlistCount: number;
   onOpenCompare: () => void;
-  onOpenStudio?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   shortlistCount,
   onOpenCompare,
-  onOpenStudio,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,12 +22,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { href: '#listings', label: 'Commercial Units' },
-    { href: '#map-view', label: 'Map Search' },
-    { href: '#studio', label: 'Location Studio' },
-    { href: '#menu-pricing', label: 'Menu & Economics' },
-    { href: '#advisor', label: 'AI Advisor' },
-    { href: '#key-factors', label: 'Market Insights' },
+    { href: '#map-search', label: 'Map Search & Units' },
+    { href: '#advisor', label: 'Commercial AI Advisor' },
+    { href: '#worked-example', label: 'Tanjong Pagar Case' },
+    { href: '#key-factors', label: '7-Pillar Scoring' },
+    { href: '#how-it-works', label: 'Methodology' },
   ];
 
   return (
@@ -114,13 +111,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
-            {/* Location Studio CTA Button */}
+            {/* Map Search CTA Button */}
             <a
-              href="#studio"
+              href="#map-search"
               className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-lg bg-red-600 hover:bg-red-700 text-white shadow-sm shadow-red-600/20 transition-all active:scale-95"
             >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>Location Studio</span>
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Map Search</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -169,12 +166,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <div className="pt-2 flex flex-col gap-2">
             <a
-              href="#studio"
+              href="#map-search"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full py-2.5 rounded-lg bg-red-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm"
             >
-              <SlidersHorizontal className="w-4 h-4" />
-              <span>Open Location Studio</span>
+              <MapPin className="w-4 h-4" />
+              <span>Explore Units on Map</span>
             </a>
           </div>
         </div>
